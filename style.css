@@ -1,0 +1,70 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1a12;
+  --bg2:#162019;
+  --bg3:#1d2b1f;
+  --bg4:#243327;
+  --border:#2e4a32;
+  --border2:#3a5e3e;
+  --text:#e2f0e3;
+  --text2:#9cbfa0;
+  --text3:#6a9470;
+  --green:#4caf6e;
+  --green-dark:#2d7a48;
+  --green-light:#a8dfb8;
+  --amber:#c8943a;
+  --amber-bg:#1f2910;
+  --amber-border:#4a3a10;
+  --amber-text:#e8c068;
+  --red:#c0504a;
+  --red-bg:#1f1010;
+  --red-border:#4a2020;
+  --red-text:#e88080;
+  --valid-bg:#0d2218;
+  --valid-border:#2d7a48;
+  --valid-text:#a8dfb8;
+}
+body{background:var(--bg);font-family:var(--font-sans,system-ui,sans-serif);color:var(--text)}
+.wrap{padding:1.75rem 1.25rem;max-width:560px;margin:0 auto}
+.header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.logo{width:32px;height:32px;border-radius:8px;background:var(--green-dark);display:flex;align-items:center;justify-content:center}
+h2{font-size:18px;font-weight:500;color:var(--text)}
+.sub{font-size:13px;color:var(--text3);margin-bottom:1.5rem;padding-left:42px}
+.card{background:var(--bg2);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem}
+.field{margin-bottom:1rem}
+label{display:block;font-size:12px;color:var(--text3);margin-bottom:5px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+input,select{width:100%;padding:9px 12px;border:0.5px solid var(--border);border-radius:8px;font-size:15px;background:var(--bg3);color:var(--text);outline:none;transition:border-color .15s,background .15s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus{border-color:var(--green-dark);background:var(--bg4);box-shadow:0 0 0 3px rgba(45,122,72,.18)}
+input::placeholder{color:var(--text3)}
+select option{background:var(--bg3);color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.divider{height:0.5px;background:var(--border);margin:1.25rem 0}
+button{width:100%;padding:11px;border:none;border-radius:10px;background:var(--green-dark);color:#e2f0e3;font-size:15px;cursor:pointer;font-weight:500;transition:background .15s,transform .1s;letter-spacing:.01em}
+button:hover{background:#35924f}
+button:active{transform:scale(.98);background:#2a6b3e}
+.result{border-radius:12px;padding:1rem 1.25rem;border:0.5px solid;margin-top:1rem}
+.result.valid{background:var(--valid-bg);border-color:var(--valid-border)}
+.result.invalid{background:var(--red-bg);border-color:var(--red-border)}
+.result.warn{background:var(--amber-bg);border-color:var(--amber-border)}
+.result-title{font-size:15px;font-weight:500;margin-bottom:4px}
+.result.valid .result-title{color:var(--valid-text)}
+.result.invalid .result-title{color:var(--red-text)}
+.result.warn .result-title{color:var(--amber-text)}
+.result-detail{font-size:13px;line-height:1.6}
+.result.valid .result-detail{color:#7abf90}
+.result.invalid .result-detail{color:#b07070}
+.result.warn .result-detail{color:#b08848}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+.badge.v{background:rgba(45,122,72,.35);color:var(--green-light);border:0.5px solid var(--green-dark)}
+.badge.i{background:rgba(192,80,74,.25);color:var(--red-text);border:0.5px solid var(--red-border)}
+.badge.w{background:rgba(200,148,58,.2);color:var(--amber-text);border:0.5px solid var(--amber-border)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+.info-box{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-top:.75rem}
+.info-title{font-size:12px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.months-grid{display:flex;flex-wrap:wrap;gap:5px}
+.month-pill{font-size:12px;padding:4px 10px;border-radius:20px;background:var(--bg3);border:0.5px solid var(--border);color:var(--text3);font-weight:400}
+.month-pill.active{background:var(--green-dark);border-color:#35924f;color:#d0f0d8;font-weight:500}
+.meta{margin-top:10px;font-size:12px;color:var(--text3);display:flex;gap:12px;flex-wrap:wrap}
+.meta span{display:flex;align-items:center;gap:4px}
+.icon{width:14px;height:14px;display:inline-block;vertical-align:middle}
+input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.6) sepia(1) hue-rotate(90deg)}
