@@ -31,24 +31,27 @@ function calcular(){
   const ufVal      = document.getElementById("estado").value;
   const emissaoVal = document.getElementById("emissao").value;
   const area       = document.getElementById("result-area");
+  const exercicioVal = document.getElementById("exercicio").value.trim();
 
-  if(digitoVal === "" || !ufVal || !emissaoVal){
-    area.innerHTML = `
-      <div class="result warn">
-        <span class="badge w"><span class="dot"></span>Atenção</span>
-        <div class="result-title">Preencha todos os campos</div>
-        <div class="result-detail">Informe o dígito da placa, o estado e a data de emissão da CRLV.</div>
-      </div>`;
-    return;
-  }
+  if(digitoVal === "" || !ufVal || !emissaoVal || exercicioVal === ""){
+  area.innerHTML = `
+    <div class="result warn">
+      <span class="badge w"><span class="dot"></span>Atenção</span>
+      <div class="result-title">Preencha todos os campos</div>
+      <div class="result-detail">
+        Informe o dígito da placa, o estado, a data de emissão e o exercício da CRLV.
+      </div>
+    </div>`;
+  return;
+}
 
   const digito = parseInt(digitoVal);
   const r = regras[ufVal];
   const emissao = new Date(emissaoVal + "T00:00:00");
 
   /* ✅ ANO DE VENCIMENTO CORRETO */
-  const anoBase = emissao.getFullYear();
-  const anoVenc = r.exercicio === "ANO_SEGUINTE" ? anoBase + 1 : anoBase;
+  const exercicioCRLV = parseInt(exercicioVal);
+const anoVenc = exercicioCRLV;
 
   const mesesVenc = r.d[digito];
   const mesVenc   = mesesVenc[mesesVenc.length - 1];
@@ -68,17 +71,30 @@ function calcular(){
   if(vencida){
     cls = "invalid"; bc = "i"; bt = "Vencida";
     titulo = `Licenciamento vencido há ${Math.abs(dias)} dias`;
-    detalhe = `O prazo encerrou em ${dataVenc.toLocaleDateString("pt-BR")} (${r.n}). Regularize para evitar multa e apreensão.`;
+    detalhe = `
+  Exercício da CRLV: <strong>${exercicioCRLV}</strong><br>
+  O prazo encerrou em ${dataVenc.toLocaleDateString("pt-BR")} (${r.n}).
+  Regularize para evitar multa e apreensão.
+`;
+
   }
   else if(proxima){
     cls = "warn"; bc = "w"; bt = "Vence em breve";
     titulo = `Vence em ${dias} ${dias === 1 ? "dia" : "dias"}`;
-    detalhe = `O licenciamento vence em ${dataVenc.toLocaleDateString("pt-BR")} (${r.n}).`;
+   detalhe = `
+  Exercício da CRLV: <strong>${exercicioCRLV}</strong><br>
+  O licenciamento vence em ${dataVenc.toLocaleDateString("pt-BR")} (${r.n}).
+`;
+``
   }
   else{
     cls = "valid"; bc = "v"; bt = "Regular";
     titulo = `CRLV válida até ${dataVenc.toLocaleDateString("pt-BR")}`;
-    detalhe = `Veículo regular em ${r.n}. Restam ${dias} dias até o vencimento.`;
+    detalhe = `
+  Exercício da CRLV: <strong>${exercicioCRLV}</strong><br>
+  Veículo regular em ${r.n}. Restam ${dias} dias até o vencimento.
+`;
+
   }
 
   area.innerHTML = `
